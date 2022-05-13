@@ -1,0 +1,56 @@
+# H2 Console:
+#  http://localhost:8080/h2-console
+
+# get a random prompt each time it is called
+# @name: random-prompt
+GET http://localhost:8080/journal-prompts/random
+Accept: application/json
+
+###
+
+# get a list of all the prompts in the system
+# @name: all-prompts
+GET http://localhost:8080/journal-prompts
+Accept: application/json
+
+###
+
+# add a list of prompts
+# @name: add-prompts
+POST http://localhost:8080/journal-prompts
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "title": "3 Name the one thing you are most grateful for in your life at this moment.",
+    "category": "3 Gratitude Journal Prompts"
+  },
+  {
+    "title": "Which people in your life are you most grateful for.",
+    "category": "Gratitude Journal Prompts"
+  },
+  {
+    "title": "Write about something that made you smile today.",
+    "category": "Gratitude Journal Prompts"
+  },
+  {
+    "title": "When were you last surprised?",
+    "category": "Gratitude Journal Prompts"
+  }
+]
+
+###
+
+# import journal prompts from a file
+# @name: import-prompts
+POST http://localhost:8080/journal-prompts/import
+Accept: application/json
+Content-Type: application/json
+
+< ./prompts.json
+
+###
+
+# @name: get-version
+GET http://localhost:8080/version

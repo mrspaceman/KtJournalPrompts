@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/tbl-journal-prompts.yaml
