@@ -12,7 +12,9 @@ spring:
   jpa:
     generate-ddl: false
     show-sql: true
-    format-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 logging.level:
   uk.co.droidinactu: TRACE

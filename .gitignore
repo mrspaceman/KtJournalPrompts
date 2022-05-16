@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/LogFile.log
+/package-lock.json
+/package.json

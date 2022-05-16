@@ -11,15 +11,15 @@ spring:
         web-allow-others: false
   datasource:
     url: jdbc:h2:mem:KtJournalPromptsDb
-    username: sa
+    username: ktjpusr
     password: password
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-    format-sql: true
 
 logging.level:
+  com.zaxxer: INFO
   uk.co.droidinactu: TRACE
   org.hibernate: INFO
   org.spring: INFO

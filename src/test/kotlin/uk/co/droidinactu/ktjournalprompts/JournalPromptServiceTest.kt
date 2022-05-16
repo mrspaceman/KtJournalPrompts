@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.annotation.DirtiesContext
 import uk.co.droidinactu.ktjournalprompts.db.JournalPrompt
 import uk.co.droidinactu.ktjournalprompts.db.JournalPromptRepository
 
@@ -13,6 +14,8 @@ private const val TEST_PROMPT_TITLE = "test prompt "
 private const val TEST_PROMPT_CATEGORY = "test prompt category"
 
 @SpringBootTest
+// @DataJpaTest
+@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 internal class JournalPromptServiceTest {
 
     @Autowired
@@ -39,6 +42,7 @@ internal class JournalPromptServiceTest {
 
     @Test
     fun getAllPrompts_withSinglePrompt_returnsOnePrompt() {
+        journalPromptRepository.deleteAll()
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "1", TEST_PROMPT_CATEGORY + "1"))
         val allPrompts = journalPromptService.getAllPrompts()
         Assertions.assertNotNull(allPrompts)
@@ -50,6 +54,7 @@ internal class JournalPromptServiceTest {
 
     @Test
     fun getAllPrompts_withFivePrompt_returnsFivePrompts() {
+        journalPromptRepository.deleteAll()
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "1", TEST_PROMPT_CATEGORY + "1"))
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "2", TEST_PROMPT_CATEGORY + "2"))
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "3", TEST_PROMPT_CATEGORY + "3"))

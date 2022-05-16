@@ -2,10 +2,7 @@ package uk.co.droidinactu.ktjournalprompts.controller
 
 import mu.KotlinLogging
 import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import uk.co.droidinactu.ktjournalprompts.JournalPromptService
 import uk.co.droidinactu.ktjournalprompts.db.JournalPrompt
 
@@ -70,7 +67,7 @@ class JournalPromptController(
         "/journal-prompts/{id}",
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun getJournalPrompt(id: Long): JournalPrompt? {
+    fun getJournalPrompt(@PathVariable id: Long): JournalPrompt? {
         log.trace { "Getting journal prompt with id: $id" }
         return journalPromptService.getPrompt(id)
     }
@@ -79,7 +76,7 @@ class JournalPromptController(
         "/journal-prompts/{category}",
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun getJournalPromptsByCategory(category: String): List<JournalPrompt?> {
+    fun getJournalPromptsByCategory(@PathVariable category: String): List<JournalPrompt?> {
         log.trace { "Getting journal prompts by category: $category" }
         return journalPromptService.getAllPromptsInCategory(category)
     }

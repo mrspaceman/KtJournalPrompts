@@ -12,7 +12,7 @@
 
   <groupId>uk.co.droidinactu</groupId>
   <artifactId>KtJournalPrompts</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>KtJournalPrompts</name>
   <description>KtJournalPrompts</description>
 
@@ -40,15 +40,6 @@
     <!--      <artifactId>spring-boot-starter-validation</artifactId>-->
     <!--    </dependency>-->
 
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <!-- Replace artifactId with vaadin-core to use only free components -->
-      <artifactId>vaadin</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-spring-boot-starter</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-reflect</artifactId>
@@ -145,20 +136,7 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
-    <repository>
-      <id>vaadin-prereleases</id>
-      <url>
-        https://maven.vaadin.com/vaadin-prereleases/
-      </url>
-    </repository>
-    <!-- Repository used by many Vaadin add-ons -->
-    <repository>
-      <id>Vaadin Directory</id>
-      <url>https://maven.vaadin.com/vaadin-addons</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
+
   </repositories>
 
   <pluginRepositories>
@@ -170,12 +148,6 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
-    <pluginRepository>
-      <id>vaadin-prereleases</id>
-      <url>
-        https://maven.vaadin.com/vaadin-prereleases/
-      </url>
-    </pluginRepository>
   </pluginRepositories>
 
   <dependencyManagement>
@@ -184,14 +156,6 @@
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
         <version>5.8.2</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-bom</artifactId>
-        <version>${vaadin.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -266,33 +230,5 @@
 
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>production</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-maven-plugin</artifactId>
-            <version>${vaadin.version}</version>
-            <executions>
-              <execution>
-                <id>frontend</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>prepare-frontend</goal>
-                  <goal>build-frontend</goal>
-                </goals>
-                <configuration>
-                  <productionMode>true</productionMode>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>
