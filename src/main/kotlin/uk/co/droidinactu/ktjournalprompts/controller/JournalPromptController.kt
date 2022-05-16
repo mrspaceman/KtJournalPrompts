@@ -43,9 +43,18 @@ class JournalPromptController(
         "/journal-prompts",
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun getJournalPrompts(): List<JournalPrompt?> {
+    fun getAllJournalPrompts(): List<JournalPrompt?> {
         log.trace { "Getting all journal prompts" }
         return journalPromptService.getAllPrompts()
+    }
+
+    @GetMapping(
+        "/journal-prompts/categories",
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun getAllJournalPromptCategories(): List<String?> {
+        log.trace { "Getting all journal prompt categories" }
+        return journalPromptService.getAllPromptCategories()
     }
 
     @GetMapping(

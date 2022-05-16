@@ -15,6 +15,13 @@ Accept: application/json
 
 ###
 
+# get a list of all the prompts in the system
+# @name: all-prompt-categories
+GET http://localhost:8080/journal-prompts/categories
+Accept: application/json
+
+###
+
 # add a list of prompts
 # @name: add-prompts
 POST http://localhost:8080/journal-prompts

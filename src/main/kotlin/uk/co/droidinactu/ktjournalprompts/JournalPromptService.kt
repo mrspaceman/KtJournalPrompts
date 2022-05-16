@@ -46,4 +46,9 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
         return prompts[Random.nextInt(prompts.size)]
     }
 
+    fun getAllPromptCategories(): List<String?> {
+        return journalPromptRepository.findAll()
+            .map { it?.category }.toSet().toList()
+    }
+
 }

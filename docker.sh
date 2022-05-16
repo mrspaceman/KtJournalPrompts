@@ -22,4 +22,4 @@ docker logs $DB_CONTAINER_NAME
 # docker start $DB_CONTAINER_NAME
 
 docker build --tag=kt-journal-prompt:latest .
-docker run -e "SPRING_PROFILES_ACTIVE=mariadb" docker-with-spring-profile:latest
+docker run -e "SPRING_PROFILES_ACTIVE=mariadb" -p 8080:8080 docker-with-spring-profile:latest
