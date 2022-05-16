@@ -41,12 +41,12 @@ class KtJournalPromptsApplicationTests {
     @Test
     fun contextLoads() {
         val mapped = mapper.readValue(jsonStr, JournalPromptRequest::class.java)
-        println("mapped: ${mapped}")
+        println("mapped: $mapped")
         Assertions.assertNotNull(mapped)
 
         val mapped2: List<JournalPromptRequest> = mapper.readValue(jsonListStr)
         Assertions.assertEquals(4, mapped2.size)
-        println("mapped: ${mapped2}")
+        println("mapped: $mapped2")
     }
 
 }

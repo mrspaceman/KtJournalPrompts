@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="KtJournalPromptsApplication" type="SpringBootApplicationConfigurationType"
+    factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" />
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="mariadb" />
+    </envs>
+    <module name="KtJournalPrompts" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="uk.co.droidinactu.ktjournalprompts.KtJournalPromptsApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

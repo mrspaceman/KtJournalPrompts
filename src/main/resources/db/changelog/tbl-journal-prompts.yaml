@@ -1,7 +1,7 @@
 databaseChangeLog:
   - preConditions:
       - runningAs:
-          username: sa
+          username: ktjpusr
 
   - changeSet:
       id: 1-create-table-journal-prompts

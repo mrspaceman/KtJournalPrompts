@@ -8,13 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import uk.co.droidinactu.ktjournalprompts.JournalPromptService
 import uk.co.droidinactu.ktjournalprompts.db.JournalPrompt
-import kotlin.random.Random
 
 @RestController
 class JournalPromptController(
     private val journalPromptService: JournalPromptService
 ) {
-
     private val log = KotlinLogging.logger {}
 
     @PostMapping(
@@ -38,11 +36,7 @@ class JournalPromptController(
         @RequestBody journalPrompts: List<JournalPromptImportRequest>
     ): List<JournalPrompt?> {
         log.info { "Importing ${journalPrompts.size} journal prompts" }
-        val prompts: MutableList<JournalPromptRequest> = mutableListOf()
-        journalPrompts.forEach {
-            it.prompts?.forEach { prompt -> prompts.add(JournalPromptRequest(prompt, it.category ?: "Unknown")) }
-        }
-        return journalPromptService.createPrompts(prompts.toList())
+        return journalPromptService.importPrompts(journalPrompts)
     }
 
     @GetMapping(
@@ -51,7 +45,6 @@ class JournalPromptController(
     )
     fun getJournalPrompts(): List<JournalPrompt?> {
         log.trace { "Getting all journal prompts" }
-
         return journalPromptService.getAllPrompts()
     }
 
@@ -61,9 +54,7 @@ class JournalPromptController(
     )
     fun getRandomJournalPrompt(): JournalPrompt? {
         log.trace { "Getting all journal prompts" }
-
-        val prompts = journalPromptService.getAllPrompts()
-        return prompts.get(Random.nextInt(prompts.size))
+        return journalPromptService.getRandomPrompt()
     }
 
     @GetMapping(
@@ -72,9 +63,7 @@ class JournalPromptController(
     )
     fun getJournalPrompt(id: Long): JournalPrompt? {
         log.trace { "Getting journal prompt with id: $id" }
-
-        val prompt = journalPromptService.getPrompt(id);
-        return prompt
+        return journalPromptService.getPrompt(id)
     }
 
     @GetMapping(
@@ -83,7 +72,6 @@ class JournalPromptController(
     )
     fun getJournalPromptsByCategory(category: String): List<JournalPrompt?> {
         log.trace { "Getting journal prompts by category: $category" }
-        val prompts = journalPromptService.getAllPromptsInCategory(category)
-        return prompts
+        return journalPromptService.getAllPromptsInCategory(category)
     }
 }

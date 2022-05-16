@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Bean
 import org.springframework.web.filter.CommonsRequestLoggingFilter
 
 @SpringBootApplication
-open class KtJournalPromptsApplication
+class KtJournalPromptsApplication
 
 fun main(args: Array<String>) {
     runApplication<KtJournalPromptsApplication>(*args)
 }
 
 @Bean
-fun requestLoggingFilter(): CommonsRequestLoggingFilter? {
+fun requestLoggingFilter(): CommonsRequestLoggingFilter {
     val loggingFilter = CommonsRequestLoggingFilter()
     loggingFilter.setIncludeClientInfo(true)
     loggingFilter.setIncludeQueryString(true)

@@ -17,7 +17,7 @@ class JournalPrompt(
     constructor() : this(null, "", "")
     constructor(journalPromptRequest: JournalPromptRequest) : this(
         null,
-        journalPromptRequest?.title ?: "JournalPrompt",
-        journalPromptRequest?.category ?: "UnKnown"
+        journalPromptRequest.title ?: "JournalPrompt",
+        journalPromptRequest.category ?: "UnKnown"
     )
 }

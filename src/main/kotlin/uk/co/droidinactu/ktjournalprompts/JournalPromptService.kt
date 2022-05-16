@@ -1,9 +1,11 @@
 package uk.co.droidinactu.ktjournalprompts
 
 import org.springframework.stereotype.Service
+import uk.co.droidinactu.ktjournalprompts.controller.JournalPromptImportRequest
 import uk.co.droidinactu.ktjournalprompts.controller.JournalPromptRequest
 import uk.co.droidinactu.ktjournalprompts.db.JournalPrompt
 import uk.co.droidinactu.ktjournalprompts.db.JournalPromptRepository
+import kotlin.random.Random
 
 @Service
 class JournalPromptService(private val journalPromptRepository: JournalPromptRepository) {
@@ -14,6 +16,14 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
 
     fun getPrompt(id: Long): JournalPrompt? {
         return getAllPrompts().firstOrNull { it?.id == id }
+    }
+
+    fun importPrompts(promptToImport: List<JournalPromptImportRequest>): List<JournalPrompt?> {
+        val prompts: MutableList<JournalPromptRequest> = mutableListOf()
+        promptToImport.forEach {
+            it.prompts?.forEach { prompt -> prompts.add(JournalPromptRequest(prompt, it.category ?: "Unknown")) }
+        }
+        return createPrompts(prompts.toList())
     }
 
     fun createPrompts(journalPrompts: List<JournalPromptRequest>): List<JournalPrompt?> {
@@ -29,6 +39,11 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
         return journalPromptRepository.save(
             JournalPrompt(journalPromptReq)
         )
+    }
+
+    fun getRandomPrompt(): JournalPrompt? {
+        val prompts = getAllPrompts()
+        return prompts[Random.nextInt(prompts.size)]
     }
 
 }
