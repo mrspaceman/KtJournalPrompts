@@ -6,25 +6,20 @@ use KtJournalPrompts;
 
 CREATE USER IF NOT EXISTS 'ktjpusr' IDENTIFIED BY 'ktjpheaven';
 
-GRANT USAGE ON *.* TO 'ktjpusr'@localhost IDENTIFIED BY 'ktjpheaven';
 GRANT USAGE ON *.* TO 'ktjpusr'@'%' IDENTIFIED BY 'ktjpheaven';
-
-grant all privileges on KtJournalPrompts.* TO 'ktjpusr'@'localhost';
 grant all privileges on KtJournalPrompts.* TO 'ktjpusr'@'%';
 
 FLUSH PRIVILEGES;
 
--- database privilages
-GRANT CREATE ON KtJournalPrompts to 'ktjpusr'@localhost;
+-- database privileges
 GRANT CREATE ON KtJournalPrompts to 'ktjpusr'@'%';
 
--- table privilages
+-- table privileges
 GRANT SELECT ON KtJournalPrompts to 'ktjpusr'@'%';
 GRANT UPDATE ON KtJournalPrompts to 'ktjpusr'@'%';
 GRANT INSERT ON KtJournalPrompts to 'ktjpusr'@'%';
 
 FLUSH PRIVILEGES;
-
 SHOW GRANTS FOR 'ktjpusr';
 
 SELECT user, host, plugin
