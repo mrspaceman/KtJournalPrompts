@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb-server:3306/KtJournalPrompts?createDatabaseIfNotExist=true
+    username: ktjpusr
+    password: ktjpheaven
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    show-sql: true
+    generate-ddl: false
+    # validate: validate the schema, makes no changes to the database.
+    # update: update the schema.
+    # create: creates the schema, destroying previous data.
+    # create-drop: drop the schema at the end of the session.
+    # ddl-auto: create-drop
+  sql:
+    init:
+      platform: MariaDb
