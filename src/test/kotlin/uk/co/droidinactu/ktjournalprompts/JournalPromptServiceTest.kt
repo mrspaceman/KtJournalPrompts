@@ -66,7 +66,24 @@ internal class JournalPromptServiceTest {
     }
 
     @Test
-    fun getPrompt() {
+    fun getPrompt_withNoPrompts_returns() {
+        journalPromptRepository.deleteAll()
+        val prmpt = journalPromptService.getPrompt(1)
+        Assertions.assertNull(prmpt)
+    }
+
+    @Test
+    fun getPrompt_withOnePrompts_returnsPrompt() {
+        journalPromptRepository.deleteAll()
+        val savedPrmpt =
+            journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "1", TEST_PROMPT_CATEGORY + "1"))
+        Assertions.assertNotNull(savedPrmpt)
+        Assertions.assertNotNull(savedPrmpt.id)
+        val prmpt = journalPromptService.getPrompt(savedPrmpt.id!!)
+        Assertions.assertNotNull(prmpt)
+        Assertions.assertEquals(1, prmpt!!.id)
+        Assertions.assertEquals(TEST_PROMPT_TITLE + "1", prmpt!!.title)
+        Assertions.assertEquals(TEST_PROMPT_CATEGORY + "1", prmpt!!.category)
     }
 
     @Test

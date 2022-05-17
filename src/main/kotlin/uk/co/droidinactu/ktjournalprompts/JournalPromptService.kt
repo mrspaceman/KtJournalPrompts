@@ -19,6 +19,7 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
     }
 
     fun importPrompts(promptToImport: List<JournalPromptImportRequest>): List<JournalPrompt?> {
+        val existingPrompts = getAllPrompts()
         val prompts: MutableList<JournalPromptRequest> = mutableListOf()
         promptToImport.forEach {
             it.prompts?.forEach { prompt -> prompts.add(JournalPromptRequest(prompt, it.category ?: "Unknown")) }

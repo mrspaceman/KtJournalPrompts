@@ -41,7 +41,7 @@ if you choose to use H2 as the database a new file will be created called
 
 To use MariaDb I have run a docker container using the following commands from a wsl terminal.
 
-1. Create a directory for the database to store persistent data and set it's user
+1. Create a directory for the database to store persistent data and set its user
    so that we can execute mariadb without needing root access:
 
 ```shell

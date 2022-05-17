@@ -1,0 +1,67 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class JournalPrompt << data >>  {
+  + JournalPrompt(Long?, String, String): 
+  + JournalPrompt(): 
+  + JournalPrompt(JournalPromptRequest): 
+  + id: Long?
+  + category: String
+  + title: String
+}
+class JournalPromptController {
+  + JournalPromptController(JournalPromptService): 
+  + getJournalPrompt(Long): JournalPrompt?
+  + getJournalPromptsByCategory(String): List<JournalPrompt>
+  + importJournalPrompts(List<JournalPromptImportRequest>): List<JournalPrompt>
+  + createJournalPrompts(List<JournalPromptRequest>): List<JournalPrompt>
+  + allJournalPromptCategories: List<String>
+  + allJournalPrompts: List<JournalPrompt>
+  + randomJournalPrompt: JournalPrompt?
+}
+interface JournalPromptRepository << interface >>
+class JournalPromptService {
+  + JournalPromptService(JournalPromptRepository): 
+  + createPrompt(JournalPromptRequest): JournalPrompt
+  + importPrompts(List<JournalPromptImportRequest>): List<JournalPrompt>
+  + getPrompt(Long): JournalPrompt?
+  + createPrompts(List<JournalPromptRequest>): List<JournalPrompt>
+  + getAllPromptsInCategory(String): List<JournalPrompt>
+  + allPrompts: List<JournalPrompt>
+  + randomPrompt: JournalPrompt?
+  + allPromptCategories: List<String>
+}
+class JournalPromptsConfiguration {
+  + JournalPromptsConfiguration(): 
+}
+class KtJournalPromptsApplication {
+  + KtJournalPromptsApplication():
+  + requestLoggingFilter(): CommonsRequestLoggingFilter
+  + main(String[]): Unit
+}
+class VersionController {
+  + VersionController(): 
+  + version: String?
+}
+class JournalPromptImportRequest << data >> {
+  + JournalPromptImportRequest(String?, List<String>?): 
+  + category: String?
+  + prompts: List<String>?
+}
+class JournalPromptRequest << data >> {
+  + JournalPromptRequest(String?, String?): 
+  + category: String?
+  + title: String?
+}
+
+JournalPromptController -- JournalPromptService
+JournalPromptController -- JournalPromptRequest
+JournalPromptController -- JournalPromptImportRequest
+JournalPromptService -- JournalPrompt
+JournalPromptService -- JournalPromptRepository
+JournalPromptRepository -- JournalPrompt
+
+@enduml
