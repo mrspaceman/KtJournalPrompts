@@ -22,9 +22,7 @@ sudo mkdir $MYSQL_FILES_ROOT_DIR -p
 sudo chown -R "$USER":"$USER" $POSTGRESQL_FILES_ROOT_DIR $MYSQL_FILES_ROOT_DIR
 
 docker run -d --net prompts-net --name POSTGRESQL_CONTAINER_NAME -p 5432:5432 -v /var/lib/postgresql/data:/var/lib/postgresql -e "POSTGRES_PASSWORD=ktjpheaven" postgres
-
 docker run -d --net prompts-net --name $MYSQL_CONTAINER_NAME -p 3306:3306 -v /var/lib/mysql:/var/lib/mysql -e "MYSQL_ROOT_PASSWORD=ktjpheaven" mariadb
-
 
 ls -la $MYSQL_FILES_ROOT_DIR
 docker ps

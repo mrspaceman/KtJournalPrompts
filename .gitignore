@@ -35,3 +35,4 @@ build/
 /LogFile.log
 /package-lock.json
 /package.json
+/journal-prompts.json

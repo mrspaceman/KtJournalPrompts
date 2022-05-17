@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mariadb://mariadb-server:3306/KtJournalPrompts?createDatabaseIfNotExist=true
+    url: jdbc:postgresql://postgresql-server:5432/KtJournalPrompts
     username: ktjpusr
     password: ktjpheaven
-    driverClassName: org.mariadb.jdbc.Driver
+    # driverClassName: org.postgresql.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     generate-ddl: false
     # validate: validate the schema, makes no changes to the database.
@@ -15,4 +15,4 @@ spring:
     # ddl-auto: create-drop
   sql:
     init:
-      platform: MariaDb
+      platform: PostgreSQL
