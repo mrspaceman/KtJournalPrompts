@@ -36,12 +36,6 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
         return getAllPrompts().filterNotNull().filter { it.equals(category) }
     }
 
-    fun createPrompt(journalPromptReq: JournalPromptRequest): JournalPrompt {
-        return journalPromptRepository.save(
-            JournalPrompt(journalPromptReq)
-        )
-    }
-
     fun getRandomPrompt(): JournalPrompt? {
         val prompts = getAllPrompts()
         return prompts[Random.nextInt(prompts.size)]

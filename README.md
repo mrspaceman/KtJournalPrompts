@@ -68,8 +68,41 @@ to set up MariaDb in a docker container.
 
 ## Executing the Server
 
+to be able to execute the server we must first build the application. to do this we execute the
+following command from the root of the project.
+
+```shell
+mvn clean package
+```
+
+we can now execute the jar file from the target directory:
+
+```shell
+java -jar target/KtJournalPrompts.jar
+```
+
+or we can create a docker container and run the application inside the container:
+
+```shell
+docker build --tag=kt-journal-prompt:latest . --progress=plain
+docker run -d --net prompts-net -e "SPRING_PROFILES_ACTIVE=mariadb" -p 8080:8080 kt-journal-prompt:latest
+```
+
 to run the server you can use one of the following methods:
 
 1. Run from within IntelliJ IDEA IDE.
 2. Run the server from the command line using the following command.
 3. Run the server inside a docker container.
+
+## Check [OWASP](https://www.owasp.org) vulnerabilities
+
+(from [Geeky Hacker](https://www.geekyhacker.com/2020/01/08/how-to-configure-maven-owasp-dependency-check-plugin/))
+([for gradle](https://plugins.gradle.org/plugin/org.owasp.dependencycheck))
+
+1. run `mvn clean org.owasp:dependency-check-maven:check`
+2. run `mvn dependency:tree -DoutputFile=./dependency-tree.log -DoutputType=text`
+3. run `mvn dependency:tree -DoutputFile=./dependency-tree.log.dot -DoutputType=dot`
+   * then to convert the dot file to a png file use the following command:
+   ```shell
+   dot -Tpng dependency-tree.log.dot -o dependency-tree.png
+   ```

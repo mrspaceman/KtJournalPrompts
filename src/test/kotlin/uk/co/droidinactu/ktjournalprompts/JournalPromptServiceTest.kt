@@ -82,8 +82,8 @@ internal class JournalPromptServiceTest {
         val prmpt = journalPromptService.getPrompt(savedPrmpt.id!!)
         Assertions.assertNotNull(prmpt)
         Assertions.assertEquals(1, prmpt!!.id)
-        Assertions.assertEquals(TEST_PROMPT_TITLE + "1", prmpt!!.title)
-        Assertions.assertEquals(TEST_PROMPT_CATEGORY + "1", prmpt!!.category)
+        Assertions.assertEquals(TEST_PROMPT_TITLE + "1", prmpt.title)
+        Assertions.assertEquals(TEST_PROMPT_CATEGORY + "1", prmpt.category)
     }
 
     @Test

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Table(name = "journal_prompt")
 @Entity
-class JournalPrompt(
+data class JournalPrompt(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     var id: Long? = null,
