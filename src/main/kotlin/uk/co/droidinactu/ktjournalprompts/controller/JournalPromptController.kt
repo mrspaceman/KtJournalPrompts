@@ -42,7 +42,7 @@ class JournalPromptController(
     )
     fun getAllJournalPrompts(): List<JournalPrompt?> {
         log.trace { "Getting all journal prompts" }
-        return journalPromptService.getAllPrompts()
+        return journalPromptService.prompts
     }
 
     @GetMapping(
@@ -51,7 +51,7 @@ class JournalPromptController(
     )
     fun getAllJournalPromptCategories(): List<String?> {
         log.trace { "Getting all journal prompt categories" }
-        return journalPromptService.getAllPromptCategories()
+        return journalPromptService.promptCategories
     }
 
     @GetMapping(
@@ -60,7 +60,7 @@ class JournalPromptController(
     )
     fun getRandomJournalPrompt(): JournalPrompt? {
         log.trace { "Getting all journal prompts" }
-        return journalPromptService.getRandomPrompt()
+        return journalPromptService.randomPrompt
     }
 
     @GetMapping(

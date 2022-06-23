@@ -27,6 +27,7 @@
     <logger name="com.baeldung.logback.tests" level="WARN"/>
 
     <root level="debug">
+        <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>
 

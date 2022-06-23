@@ -1,4 +1,4 @@
-package uk.co.droidinactu.ktjournalprompts
+package uk.co.droidinactu.ktjournalprompts.controller
 
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
@@ -16,7 +16,7 @@ class VersionController {
     @Value("\${journalpromptserver.version:unknownVersion}")
     val version: String? = null
         get() {
-            log.trace(this.javaClass.name + ": Getting Application Version")
+            log.trace("${this.javaClass.name}: Getting Application Version")
             return "{\"name\":\"$name\",\"version\": \"$field\"}"
         }
 }

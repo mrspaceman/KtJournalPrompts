@@ -35,7 +35,7 @@ internal class JournalPromptServiceTest {
     @Test
     fun getAllPrompts_withNoPrompts_returnsEmptyList() {
         journalPromptRepository.deleteAll()
-        val allPrompts = journalPromptService.getAllPrompts()
+        val allPrompts = journalPromptService.prompts
         Assertions.assertNotNull(allPrompts)
         Assertions.assertEquals(0, allPrompts.size)
     }
@@ -44,7 +44,7 @@ internal class JournalPromptServiceTest {
     fun getAllPrompts_withSinglePrompt_returnsOnePrompt() {
         journalPromptRepository.deleteAll()
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "1", TEST_PROMPT_CATEGORY + "1"))
-        val allPrompts = journalPromptService.getAllPrompts()
+        val allPrompts = journalPromptService.prompts
         Assertions.assertNotNull(allPrompts)
         Assertions.assertEquals(1, allPrompts.size)
         Assertions.assertEquals(1, allPrompts[0]?.id)
@@ -60,7 +60,7 @@ internal class JournalPromptServiceTest {
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "3", TEST_PROMPT_CATEGORY + "3"))
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "4", TEST_PROMPT_CATEGORY + "4"))
         journalPromptRepository.save(JournalPrompt(null, TEST_PROMPT_TITLE + "5", TEST_PROMPT_CATEGORY + "5"))
-        val allPrompts = journalPromptService.getAllPrompts()
+        val allPrompts = journalPromptService.prompts
         Assertions.assertNotNull(allPrompts)
         Assertions.assertEquals(5, allPrompts.size)
     }

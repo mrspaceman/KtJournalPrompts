@@ -1,5 +1,6 @@
 package uk.co.droidinactu.ktjournalprompts
 
+import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import uk.co.droidinactu.ktjournalprompts.controller.JournalPromptImportRequest
 import uk.co.droidinactu.ktjournalprompts.controller.JournalPromptRequest
@@ -9,17 +10,22 @@ import kotlin.random.Random
 
 @Service
 class JournalPromptService(private val journalPromptRepository: JournalPromptRepository) {
+    private val log = KotlinLogging.logger {}
 
-    fun getAllPrompts(): List<JournalPrompt?> {
-        return journalPromptRepository.findAll().toList()
-    }
+    val prompts = journalPromptRepository.findAll().toList()
+    val randomPrompt = prompts[Random.nextInt(prompts.size)]
+    val promptCategories = journalPromptRepository.findAll()
+        .map { it?.category }.toSet().toList()
 
     fun getPrompt(id: Long): JournalPrompt? {
-        return getAllPrompts().firstOrNull { it?.id == id }
+        return prompts.firstOrNull { it?.id == id }
+    }
+
+    fun getAllPromptsInCategory(category: String): List<JournalPrompt?> {
+        return prompts.filterNotNull().filter { it.equals(category) }
     }
 
     fun importPrompts(promptToImport: List<JournalPromptImportRequest>): List<JournalPrompt?> {
-        val existingPrompts = getAllPrompts()
         val prompts: MutableList<JournalPromptRequest> = mutableListOf()
         promptToImport.forEach {
             it.prompts?.forEach { prompt -> prompts.add(JournalPromptRequest(prompt, it.category ?: "Unknown")) }
@@ -30,20 +36,6 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
     fun createPrompts(journalPrompts: List<JournalPromptRequest>): List<JournalPrompt?> {
         return journalPromptRepository.saveAll(
             journalPrompts.map { JournalPrompt(it) }).toList()
-    }
-
-    fun getAllPromptsInCategory(category: String): List<JournalPrompt?> {
-        return getAllPrompts().filterNotNull().filter { it.equals(category) }
-    }
-
-    fun getRandomPrompt(): JournalPrompt? {
-        val prompts = getAllPrompts()
-        return prompts[Random.nextInt(prompts.size)]
-    }
-
-    fun getAllPromptCategories(): List<String?> {
-        return journalPromptRepository.findAll()
-            .map { it?.category }.toSet().toList()
     }
 
 }

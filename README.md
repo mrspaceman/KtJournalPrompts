@@ -102,7 +102,7 @@ to run the server you can use one of the following methods:
 1. run `mvn clean org.owasp:dependency-check-maven:check`
 2. run `mvn dependency:tree -DoutputFile=./dependency-tree.log -DoutputType=text`
 3. run `mvn dependency:tree -DoutputFile=./dependency-tree.log.dot -DoutputType=dot`
-   * then to convert the dot file to a png file use the following command:
+    * then to convert the dot file to a png file use the following command:
    ```shell
    dot -Tpng dependency-tree.log.dot -o dependency-tree.png
    ```
