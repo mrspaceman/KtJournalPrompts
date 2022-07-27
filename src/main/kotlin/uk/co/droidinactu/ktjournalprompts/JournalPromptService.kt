@@ -12,10 +12,13 @@ import kotlin.random.Random
 class JournalPromptService(private val journalPromptRepository: JournalPromptRepository) {
     private val log = KotlinLogging.logger {}
 
-    val prompts = journalPromptRepository.findAll().toList()
-    val randomPrompt = prompts[Random.nextInt(prompts.size)]
-    val promptCategories = journalPromptRepository.findAll()
-        .map { it?.category }.toSet().toList()
+    val prompts
+        get() = journalPromptRepository.findAll().toList()
+    val randomPrompt
+        get() = prompts[Random.nextInt(prompts.size)]
+    val promptCategories
+        get() = journalPromptRepository.findAll()
+            .map { it?.category }.toSet().toList()
 
     fun getPrompt(id: Long): JournalPrompt? {
         return prompts.firstOrNull { it?.id == id }
@@ -25,9 +28,9 @@ class JournalPromptService(private val journalPromptRepository: JournalPromptRep
         return prompts.filterNotNull().filter { it.equals(category) }
     }
 
-    fun importPrompts(promptToImport: List<JournalPromptImportRequest>): List<JournalPrompt?> {
+    fun importPrompts(journalPrompts: List<JournalPromptImportRequest>): List<JournalPrompt?> {
         val prompts: MutableList<JournalPromptRequest> = mutableListOf()
-        promptToImport.forEach {
+        journalPrompts.forEach {
             it.prompts?.forEach { prompt -> prompts.add(JournalPromptRequest(prompt, it.category ?: "Unknown")) }
         }
         return createPrompts(prompts.toList())
